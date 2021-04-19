@@ -179,10 +179,14 @@ class _AnimatedTextKitState extends State<AnimatedTextKit>
 
   bool get _isLast => _index == widget.animatedTexts.length - 1;
 
-  void _nextAnimation() {
+  void _nextAnimation() async {
     final isLast = _isLast;
 
     _isCurrentlyPausing = false;
+    
+        if(_index == 1){
+      await Future.delayed(Duration(seconds: 10));
+    }
 
     // Handling onNext callback
     widget.onNext?.call(_index, isLast);
